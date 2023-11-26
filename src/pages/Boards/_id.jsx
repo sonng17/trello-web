@@ -10,6 +10,7 @@ function Board() {
       maxWidth={false}
       sx={{
         height: '100vh',
+        
       }}
     >
       <AppBar />
