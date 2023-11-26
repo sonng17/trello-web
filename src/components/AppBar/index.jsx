@@ -8,6 +8,7 @@ import Starred from './Menu/Starred'
 import Templates from './Menu/Templates'
 import { HelpOutline, NotificationsNone } from '@mui/icons-material'
 import Profiles from './Menu/Profiles'
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd'
 
 function AppBar() {
   return (
@@ -20,7 +21,7 @@ function AppBar() {
         alignItems: 'center',
         justifyContent: 'space-between',
         gap: 2,
-        overflowX: 'auto'
+        overflowX: 'auto',
       }}
     >
       <Box
@@ -48,7 +49,9 @@ function AppBar() {
           <Recent />
           <Starred />
           <Templates />
-          <Button variant="outlined">Create</Button>
+          <Button startIcon={<LibraryAddIcon />} variant="outlined">
+            Create
+          </Button>
         </Box>
       </Box>
       <Box
