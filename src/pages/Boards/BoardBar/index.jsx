@@ -59,7 +59,18 @@ function BoardBar() {
         </Button>
         <AvatarGroup
           max={3}
-          sx={{ gap: '10px', '& .MuiAvatar-root': { width: 34, height: 34, fontSize: 16, border: 'none' } }}
+          sx={{
+            gap: '10px',
+            '& .MuiAvatar-root': {
+              width: 34,
+              height: 34,
+              fontSize: 16,
+              border: 'none',
+              color: 'white',
+              cursor: 'pointer',
+              '&:first-of-type': { backgroundColor: '#a4b0be'}
+            },
+          }}
         >
           <Tooltip title="Trellodev">
             <Avatar alt="Son" src="https://avatars.githubusercontent.com/u/103430853?v=4" />
