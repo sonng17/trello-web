@@ -1,10 +1,11 @@
-import { Avatar, AvatarGroup, Box, Button, Chip, Tooltip } from '@mui/material'
+import { Avatar, AvatarGroup, Box, Button, Chip, Tooltip, capitalize } from '@mui/material'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import VpnLockIcon from '@mui/icons-material/VpnLock'
 import AddToDriveIcon from '@mui/icons-material/AddToDrive'
 import BoltIcon from '@mui/icons-material/Bolt'
 import FilterIcon from '@mui/icons-material/Filter'
 import PersonAddIcon from '@mui/icons-material/PersonAdd'
+import { capitalizeFirstLetter } from '~/utils/formatters'
 
 const MENU_STYLES = {
   color: 'white',
@@ -20,7 +21,7 @@ const MENU_STYLES = {
   },
 }
 
-function BoardBar() {
+function BoardBar({ board }) {
   return (
     <Box
       sx={{
@@ -37,8 +38,8 @@ function BoardBar() {
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Chip sx={MENU_STYLES} clickable icon={<DashboardIcon />} label="Trello MERN" />
-        <Chip sx={MENU_STYLES} clickable icon={<VpnLockIcon />} label="Public/Private Workspace" />
+        <Chip sx={MENU_STYLES} clickable icon={<DashboardIcon />} label={board?.title} />
+        <Chip sx={MENU_STYLES} clickable icon={<VpnLockIcon />} label={capitalize(board?.type)} />
         <Chip sx={MENU_STYLES} clickable icon={<AddToDriveIcon />} label="Add to Google Drive" />
         <Chip sx={MENU_STYLES} clickable icon={<BoltIcon />} label="Automation" />
         <Chip sx={MENU_STYLES} clickable icon={<FilterIcon />} label="Automation" />
@@ -67,7 +68,7 @@ function BoardBar() {
               border: 'none',
               color: 'white',
               cursor: 'pointer',
-              '&:first-of-type': { backgroundColor: '#a4b0be'}
+              '&:first-of-type': { backgroundColor: '#a4b0be' },
             },
           }}
         >
