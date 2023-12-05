@@ -2,7 +2,7 @@ export const mockData = {
   board: {
     _id: 'board-id-01',
     title: 'Trello Board',
-    description: 'Pro MERN stack Course',
+    description: 'Trello description',
     type: 'public', // 'private'
     ownerIds: [], // Những users là Admin của board
     memberIds: [], // Những users là member bình thường của board
@@ -27,9 +27,8 @@ export const mockData = {
             boardId: 'board-id-01',
             columnId: 'column-id-01',
             title: 'Title of card 01',
-            description: 'Markdown Syntax (sẽ ở khóa nâng cao nhé)',
-            cover:
-              'https://trungquandev.com/wp-content/uploads/2022/07/fair-mern-stack-advanced-banner-trungquandev.jpg',
+            description: 'Markdown Syntax',
+            cover: 'https://avatars.slack-edge.com/2021-07-19/2282472048054_9a51d280179d828b3ad7_512.png',
             memberIds: ['test-user-id-01'],
             comments: ['test comment 01', 'test comment 02'],
             attachments: ['test attachment 01', 'test attachment 02', 'test attachment 03'],
