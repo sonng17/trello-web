@@ -9,12 +9,24 @@ import theme from '~/theme'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
+//Cau hinh mui dialog
+import { ConfirmProvider } from 'material-ui-confirm'
+
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <CssVarsProvider theme={theme}>
+  // <React.StrictMode>
+  <CssVarsProvider theme={theme}>
+    <ConfirmProvider
+      defaultOptions={{
+        buttonOrder: ['confirm', 'cancel'],
+        allowClose: false,
+        confirmationButtonProps: { color: 'secondary', variant: 'outlined' },
+        cancellationButtonProps: { color: 'inherit' },
+      }}
+    >
       <CssBaseline />
       <App />
-      <ToastContainer position='bottom-left' theme='colored'/>
-    </CssVarsProvider>
-  </React.StrictMode>,
+      <ToastContainer position="bottom-left" theme="colored" />
+    </ConfirmProvider>
+  </CssVarsProvider>,
+  // </React.StrictMode>,
 )

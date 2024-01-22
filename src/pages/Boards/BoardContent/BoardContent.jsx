@@ -26,7 +26,15 @@ const ACTIVE_DRAG_ITEM_TYPE = {
   CARD: 'ACTIVE_DRAG_ITEM_TYPE_CARD',
 }
 
-function BoardContent({ board, createNewColumn, createNewCard, moveColumns, moveCardInTheSameColumn, moveCardToDifferentColumn }) {
+function BoardContent({
+  board,
+  createNewColumn,
+  createNewCard,
+  moveColumns,
+  moveCardInTheSameColumn,
+  moveCardToDifferentColumn,
+  deleteColumnDetails,
+}) {
   //Nếu dùng pointerSensor phải kết hợp thuộc tính CSS touch-action: none ở những phần tử kéo thả, tuy nhiên vẫn còn bug
   // const pointerSensor = useSensor(PointerSensor, { activationConstraint: { distance: 10 } })
 
@@ -63,7 +71,7 @@ function BoardContent({ board, createNewColumn, createNewCard, moveColumns, move
     activeColumn,
     activeDraggingCardId,
     activeDraggingCardData,
-    triggerFrom
+    triggerFrom,
   ) => {
     setOrderedColumns(prevColumns => {
       const overCardIndex = overColumn?.cards?.findIndex(card => card._id === overCardId)
@@ -146,7 +154,7 @@ function BoardContent({ board, createNewColumn, createNewCard, moveColumns, move
         activeColumn,
         activeDraggingCardId,
         activeDraggingCardData,
-        'handleDragOver'
+        'handleDragOver',
       )
     }
   }
@@ -176,7 +184,7 @@ function BoardContent({ board, createNewColumn, createNewCard, moveColumns, move
           activeColumn,
           activeDraggingCardId,
           activeDraggingCardData,
-          'handleDragEnd'
+          'handleDragEnd',
         )
       } else {
         const oldCardIndex = oldColumnWhenDraggingCard?.cards?.findIndex(c => c._id === activeDragItemId)
@@ -276,7 +284,12 @@ function BoardContent({ board, createNewColumn, createNewCard, moveColumns, move
           p: '10px 0',
         }}
       >
-        <ListColumns columns={orderedColumns} createNewColumn={createNewColumn} createNewCard={createNewCard} />
+        <ListColumns
+          columns={orderedColumns}
+          createNewColumn={createNewColumn}
+          createNewCard={createNewCard}
+          deleteColumnDetails={deleteColumnDetails}
+        />
         <DragOverlay dropAnimation={customDropAnimation}>
           {!activeDragItemType && null}
           {activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN && <Column column={activeDragItemData} />}

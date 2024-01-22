@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import {
   createNewCardAPI,
   createNewColumnAPI,
+  deleteColumnDetailsAPI,
   fetchBoardDetailsAPI,
   moveCardToDifferentColumnAPI,
   updateBoardDetailsAPI,
@@ -16,6 +17,7 @@ import { mockData } from '~/apis/mock-data'
 import { isEmpty } from 'lodash'
 import { generatePlaceholderCard } from '~/utils/formatters'
 import { mapOrder } from '~/utils/sorts'
+import { toast } from 'react-toastify'
 
 function Board() {
   const [board, setBoard] = useState(null)
@@ -119,6 +121,19 @@ function Board() {
     })
   }
 
+  // Xu ly xoa 1 column va card
+  const deleteColumnDetails = columnId => {
+    //Update du lieu state Board
+    const newBoard = { ...board }
+    newBoard.columns = newBoard.columns.filter(c => c._id !== columnId)
+    newBoard.columnOrderIds = newBoard.columnOrderIds.filter(_id => _id !== columnId)
+    setBoard(newBoard)
+    //Goi API xu ly phia BE
+    deleteColumnDetailsAPI(columnId).then(res => {
+      toast.success(res?.deleteResult)
+    })
+  }
+
   if (!board) {
     return (
       <Box
@@ -153,6 +168,7 @@ function Board() {
         moveColumns={moveColumns}
         moveCardInTheSameColumn={moveCardInTheSameColumn}
         moveCardToDifferentColumn={moveCardToDifferentColumn}
+        deleteColumnDetails={deleteColumnDetails}
       />
     </Container>
   )
