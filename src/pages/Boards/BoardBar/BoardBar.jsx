@@ -38,8 +38,10 @@ function BoardBar({ board }) {
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Chip sx={MENU_STYLES} clickable icon={<DashboardIcon />} label={board?.title} />
-        <Chip sx={MENU_STYLES} clickable icon={<VpnLockIcon />} label={capitalize(board?.type)} />
+        <Tooltip title={board?.description}>
+          <Chip sx={MENU_STYLES} clickable icon={<DashboardIcon />} label={board?.title} />
+        </Tooltip>
+        <Chip sx={MENU_STYLES} clickable icon={<VpnLockIcon />} label={capitalize(board?.type ?? '')} />
         <Chip sx={MENU_STYLES} clickable icon={<AddToDriveIcon />} label="Add to Google Drive" />
         <Chip sx={MENU_STYLES} clickable icon={<BoltIcon />} label="Automation" />
         <Chip sx={MENU_STYLES} clickable icon={<FilterIcon />} label="Automation" />

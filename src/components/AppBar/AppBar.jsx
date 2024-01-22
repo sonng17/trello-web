@@ -6,7 +6,7 @@ import Workspaces from './Menu/Workspaces'
 import Recent from './Menu/Recent'
 import Starred from './Menu/Starred'
 import Templates from './Menu/Templates'
-import { AccountCircle, HelpOutline, NotificationsNone } from '@mui/icons-material'
+import { HelpOutline, NotificationsNone } from '@mui/icons-material'
 import Profiles from './Menu/Profiles'
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd'
 import SearchIcon from '@mui/icons-material/Search'
@@ -79,12 +79,14 @@ function AppBar() {
                 <SearchIcon sx={{ color: 'white' }} />
               </InputAdornment>
             ),
-            endAdornment: (searchValue &&
-              <CloseIcon
-                onClick={e => setSearchValue('')}
-                fontSize="small"
-                sx={{ color: 'white', cursor: 'pointer' }}
-              />
+            endAdornment: searchValue && (
+              <InputAdornment position="end">
+                <CloseIcon
+                  onClick={e => setSearchValue('')}
+                  fontSize="small"
+                  sx={{ color: 'white', cursor: 'pointer' }}
+                />
+              </InputAdornment>
             ),
           }}
           sx={{
