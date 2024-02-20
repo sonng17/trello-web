@@ -5,7 +5,7 @@
   "type": "module",
   "author": "sonnd20194363",
   "engines": {
-    "node": "18.16.0"
+    "node": "18.x"
   },
   "scripts": {
     "dev": "vite --host",
