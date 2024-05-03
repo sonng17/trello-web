@@ -14,7 +14,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { toast } from 'react-toastify'
 import { useConfirm } from 'material-ui-confirm'
 
-function Column({ column, createNewCard, deleteColumnDetails }) {
+function Column({ column, createNewCard, deleteColumnDetails, deleteCardDetails }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: column._id,
     data: { ...column },
@@ -68,14 +68,6 @@ function Column({ column, createNewCard, deleteColumnDetails }) {
       description: 'This action will permanently delete your Column and its Cards!',
       confirmationText: 'Confirm',
       cancellationText: 'Cancel',
-      // buttonOrder: ['confirm', 'cancel'],
-
-      // allowClose: false,
-      // confirmationButtonProps: { color: 'secondary', variant: 'outlined' },
-      // cancellationButtonProps: { color: 'inherit' },
-
-      // description: 'Nhap Sonnd thi moi dc xoa',
-      // confirmationKeyword: 'Sonnd'
     })
       .then(() => {
         deleteColumnDetails(column._id)
@@ -199,7 +191,7 @@ function Column({ column, createNewCard, deleteColumnDetails }) {
           </Box>
         </Box>
         {/*List Cards*/}
-        <ListCards cards={orderedCards} />
+        <ListCards cards={orderedCards} deleteCardDetails={deleteCardDetails} />
         {/* Box  Column Footer*/}
         <Box
           sx={{

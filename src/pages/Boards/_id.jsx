@@ -1,30 +1,31 @@
 import { Box, CircularProgress, Container, Typography } from '@mui/material'
-import AppBar from '~/components/AppBar/AppBar'
-import BoardBar from './BoardBar/BoardBar'
-import BoardContent from './BoardContent/BoardContent'
-// import { mockData } from '~/apis/mock-data'
 import { useEffect, useState } from 'react'
-import {
-  createNewCardAPI,
-  createNewColumnAPI,
-  deleteColumnDetailsAPI,
-  fetchBoardDetailsAPI,
-  moveCardToDifferentColumnAPI,
-  updateBoardDetailsAPI,
-  updateColumnDetailsAPI,
-} from '~/apis'
-import { mockData } from '~/apis/mock-data'
 import { isEmpty } from 'lodash'
 import { generatePlaceholderCard } from '~/utils/formatters'
 import { mapOrder } from '~/utils/sorts'
 import { toast } from 'react-toastify'
 
+import AppBar from '~/components/AppBar/AppBar'
+import BoardBar from './BoardBar/BoardBar'
+import BoardContent from './BoardContent/BoardContent'
+
+import {
+  createNewCardAPI,
+  createNewColumnAPI,
+  deleteCardDetailsAPI,
+  deleteColumnDetailsAPI,
+  fetchBoardDetailsAPI,
+  moveCardToDifferentColumnAPI,
+  updateBoardDetailsAPI,
+} from '~/apis'
+
 function Board() {
   const [board, setBoard] = useState(null)
+
   useEffect(() => {
     // Tạm thời fix cứng boardId
     const boardId = '65a898cdee7dd25b718660cd'
-    //Call API
+
     fetchBoardDetailsAPI(boardId).then(board => {
       board.columns = mapOrder(board.columns, board.columnOrderIds, '_id')
       board.columns.forEach(column => {
@@ -134,6 +135,18 @@ function Board() {
     })
   }
 
+  const deleteCardDetails = cardId => {
+    //Update du lieu state Board
+    const newBoard = { ...board }
+    const indexColumn = newBoard.columns.findIndex(c => c.cards.some(c => c._id == cardId))
+    newBoard.columns[indexColumn].cards = newBoard.columns[indexColumn].cards.filter(c => c._id !== cardId)
+    setBoard(newBoard)
+    //Goi API
+    deleteCardDetailsAPI(cardId).then(res => {
+      toast.success(res?.deleteResult)
+    })
+  }
+
   if (!board) {
     return (
       <Box
@@ -169,6 +182,7 @@ function Board() {
         moveCardInTheSameColumn={moveCardInTheSameColumn}
         moveCardToDifferentColumn={moveCardToDifferentColumn}
         deleteColumnDetails={deleteColumnDetails}
+        deleteCardDetails={deleteCardDetails}
       />
     </Container>
   )

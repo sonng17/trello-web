@@ -6,7 +6,7 @@ import { useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import { toast } from 'react-toastify'
 
-function ListColumns({ columns, createNewColumn, createNewCard, deleteColumnDetails }) {
+function ListColumns({ columns, createNewColumn, createNewCard, deleteColumnDetails, deleteCardDetails }) {
   // SortableConText yêu cầu items là 1 mảng dạng ['id-1', 'id-2'] chứ kp {id: 'id-1'}
   // Nếu không đúng thì vẫn có thể kéo thả nhưng k có animation
 
@@ -43,7 +43,7 @@ function ListColumns({ columns, createNewColumn, createNewCard, deleteColumnDeta
         }}
       >
         {columns?.map(column => (
-          <Column key={column._id} column={column} createNewCard={createNewCard} deleteColumnDetails={deleteColumnDetails} />
+          <Column key={column._id} column={column} createNewCard={createNewCard} deleteColumnDetails={deleteColumnDetails} deleteCardDetails={deleteCardDetails} />
         ))}
         {/* Box Add new column CTA */}
         {!openNewColumnForm ? (

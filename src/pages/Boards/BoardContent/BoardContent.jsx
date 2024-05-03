@@ -34,6 +34,7 @@ function BoardContent({
   moveCardInTheSameColumn,
   moveCardToDifferentColumn,
   deleteColumnDetails,
+  deleteCardDetails
 }) {
   //Nếu dùng pointerSensor phải kết hợp thuộc tính CSS touch-action: none ở những phần tử kéo thả, tuy nhiên vẫn còn bug
   // const pointerSensor = useSensor(PointerSensor, { activationConstraint: { distance: 10 } })
@@ -289,6 +290,7 @@ function BoardContent({
           createNewColumn={createNewColumn}
           createNewCard={createNewCard}
           deleteColumnDetails={deleteColumnDetails}
+          deleteCardDetails={deleteCardDetails}
         />
         <DragOverlay dropAnimation={customDropAnimation}>
           {!activeDragItemType && null}
