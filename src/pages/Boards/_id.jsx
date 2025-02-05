@@ -24,7 +24,7 @@ function Board() {
 
   useEffect(() => {
     // Tạm thời fix cứng boardId
-    const boardId = '65a898cdee7dd25b718660cd'
+    const boardId = '65dc587ad6989829de629a7e'
 
     fetchBoardDetailsAPI(boardId).then(board => {
       board.columns = mapOrder(board.columns, board.columnOrderIds, '_id')
@@ -100,6 +100,7 @@ function Board() {
 
     // updateColumnDetailsAPI(columnId, { cardOrderIds: dndOrderedCardIds })
   }
+  
   const moveCardToDifferentColumn = (currentCardId, prevColumnId, nextColumnId, dndOrderedColumns) => {
     const dndOrderedColumnsIds = dndOrderedColumns.map(c => c._id)
     const newBoard = { ...board }
